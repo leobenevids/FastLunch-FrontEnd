@@ -1,0 +1,39 @@
+section.botao-confirmar{
+    width: 150px;
+    height: 48px;
+    background-color: #00CB76;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+section.botao-confirmar h2{
+    margin: 0 auto;
+}
+
+section.botao-confirmar .icone-confirmado-fundo{
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    background-image: url(../../images/icone-confirmado.png);
+    background-size: 100% 100%;
+    position: relative;
+    right: 10px;
+}
+
+section.botao-confirmar .icone-confirmado-fundo .icone-botao-confirmar{
+    width: 9px;
+    height: 7px;
+    background-image: url(../../images/seta-botao-confirmar.png);
+    background-size: 100% 100%;
+    position: relative;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}

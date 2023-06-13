@@ -1,0 +1,149 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "nome": "Ícaro",
+      "cpf": "062.316.320-91",
+      "telefone": "(85)911111111",
+      "cep": "68908-087",
+      "bairro": "Castelão",
+      "rua": "Rua A",
+      "numero": "31",
+      "foto": "https://popcultura.com.br/wp-content/uploads/2020/06/TheOfficeColdOpens.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "Maria",
+      "cpf": "123.456.789-00",
+      "telefone": "(85)922222222",
+      "cep": "12345-678",
+      "bairro": "Centro",
+      "rua": "Rua B",
+      "numero": "42",
+      "foto": "https://veja.abril.com.br/wp-content/uploads/2022/12/GettyImages-141041933.jpg?quality=90&strip=info&w=1280&h=720&crop=1g"
+    },
+    {
+      "id": 3,
+      "nome": "João",
+      "cpf": "987.654.321-00",
+      "telefone": "(85)933333333",
+      "cep": "54321-987",
+      "bairro": "Vila Nova",
+      "rua": "Rua C",
+      "numero": "73",
+      "foto": "https://paribar.com.br/wp-content/uploads/2022/02/Michael-Scott-engracado-frases.jpg"
+    },
+    {
+      "id": 4,
+      "nome": "Ana",
+      "cpf": "111.222.333-44",
+      "telefone": "(85)944444444",
+      "cep": "98765-432",
+      "bairro": "Praia",
+      "rua": "Rua D",
+      "numero": "12",
+      "foto": "https://cdn.dnaindia.com/sites/default/files/styles/full/public/2021/05/30/976458-jennafisher-pam-sexist-theoffice.jpg"
+    },
+    {
+      "id": 5,
+      "nome": "Pedro",
+      "cpf": "999.888.777-66",
+      "telefone": "(85)955555555",
+      "cep": "24680-135",
+      "bairro": "Monte",
+      "rua": "Rua E",
+      "numero": "55",
+      "foto": "https://classic.exame.com/wp-content/uploads/2020/08/stanley-office.jpg?quality=70&strip=info&w=1024"
+    },
+    {
+      "id": "74072cca-0b11-4181-a116-29ed2e4bac1c",
+      "nome": "Leonardo",
+      "cpf": "1234567812",
+      "telefone": "85912345678",
+      "cep": "12345123",
+      "bairro": "Lagoa Redonda",
+      "rua": "Rua Z",
+      "numero": "33",
+      "foto": "https://www.slashfilm.com/img/gallery/is-jim-the-villain-of-the-office-john-krasinski-thinks-so/l-intro-1659042139.jpg"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "cliente": "Icaro",
+      "endereco": "Castelão",
+      "status": "aberto",
+      "foto": "https://blog.consumer.com.br/wp-content/uploads/2020/11/culin%C3%A1ria-regional-brasileira.jpg",
+      "data": "05/06/23"
+    },
+    {
+      "id": 2,
+      "cliente": "Ana",
+      "endereco": "Rua das Flores",
+      "status": "aberto",
+      "foto": "https://i0.wp.com/mercadoeconsumo.com.br/wp-content/uploads/2019/04/Que-comida-saud%C3%A1vel-que-nada-brasileiro-gosta-de-fast-food.jpg?fit=1600%2C1067&ssl=1",
+      "data": "06/06/23"
+    },
+    {
+      "id": 3,
+      "cliente": "Carlos",
+      "endereco": "Avenida Central",
+      "status": "fechado",
+      "foto": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/01/comidas-da-regiao-do-nordeste-moqueca-maranhense.jpg?w=750&h=484&crop=1",
+      "data": "07/06/23"
+    },
+    {
+      "id": 4,
+      "cliente": "Mariana",
+      "endereco": "Praça da Liberdade",
+      "status": "aberto",
+      "foto": "https://st2.depositphotos.com/4687049/6972/i/450/depositphotos_69724327-stock-photo-dish-with-meat-rice-and.jpg",
+      "data": "08/06/23"
+    },
+    {
+      "id": 5,
+      "cliente": "Pedro",
+      "endereco": "Rua do Comércio",
+      "status": "fechado",
+      "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg7Z_Pmnzfaz1GZabb3xBtN7J9lv0uT4hrDw&usqp=CAU",
+      "data": "09/06/23"
+    }
+  ],
+  "menus": [
+    {
+      "id": "1",
+      "nome": "Panelada",
+      "foto": "https://www.receiteria.com.br/wp-content/uploads/receitas-de-panelada-3-730x449.jpg",
+      "descricao": "Panelada nordestina",
+      "valor_atual": "19.9"
+    },
+    {
+      "id": "2",
+      "nome": "Feijoada",
+      "foto": "https://cdn.panelinha.com.br/receita/1588270905274-39_Panelinha_12_02_200635.jpg",
+      "descricao": "Prato tradicional brasileiro",
+      "valor_atual": "24.9"
+    },
+    {
+      "id": "3",
+      "nome": "Moqueca de Camarão",
+      "foto": "https://www.sabornamesa.com.br/media/k2/items/cache/3307717c0fe122dc2ed142f42c77bf35_XL.jpg",
+      "descricao": "Delícia da culinária baiana",
+      "valor_atual": "29.9"
+    },
+    {
+      "id": "4",
+      "nome": "Pizza Margherita",
+      "foto": "https://i0.statig.com.br/bancodeimagens/3n/0t/fy/3n0tfy3kn0jv6lkafc4cyc41u.jpg",
+      "descricao": "Clássica pizza italiana",
+      "valor_atual": "18.9"
+    },
+    {
+      "id": "5",
+      "nome": "Sushi Variado",
+      "foto": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggcx1H_iT4vTBkXJLj-T__RUoLFLe3K-vsJ5ZG6nLq1ZDCHfrs8M40wHFSndP5Zhvcx4b6_QwukYkDUzE1nAlQlR8mmmgpRH1iFrO5IDJV0urT5z_hRWUU0Pi6o3979x2cdJQJ-7iPJ2WIDeOhU6egT8-IbkzLRsDxUlWqpFSJkR4Nrn8ZT7u3b1Mk/s2000/receita-de-sushi.jpg",
+      "descricao": "Seleção de sushis frescos",
+      "valor_atual": "35.9"
+    }
+  ]
+}

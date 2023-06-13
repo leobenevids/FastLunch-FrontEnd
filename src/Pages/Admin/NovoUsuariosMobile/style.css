@@ -1,0 +1,51 @@
+ .info-restaurante {
+    display: flex;
+    justify-content: space-around;
+}
+ .info-restaurante .box{
+    width: 400px;
+    height: 150px;
+    background-color: #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 4px 4px 1px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    text-align: center;
+}
+.info-restaurante .box h2{
+    font-size: 27px;
+    margin-bottom: 30px;
+}
+.info-restaurante .box h4{
+    font-size: 37px;
+    margin-bottom: 30px;
+}
+.novo-restaurante {
+    margin-top: 50px;
+    width: 100px;
+    height: 40px;
+    background-color: blue;
+    color: white;
+    outline: none;
+    border-radius:10px ;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+.novo-restaurante:hover{
+    background-color: rgb(71, 71, 253);
+}
+.table-restaurantes .icone-editar{
+    width: 30px;
+    height: 30px;
+    background-image: url(../../../images/edit.svg);
+    background-size: 100% 100%;
+    margin: 0 auto;
+}
+
+.table-restaurantes .icone-excluir{
+    width: 30px;
+    height: 30px;
+    background-image: url(../../images/trash.svg);
+    background-size: 100% 100%;
+    margin: 0 auto;
+}

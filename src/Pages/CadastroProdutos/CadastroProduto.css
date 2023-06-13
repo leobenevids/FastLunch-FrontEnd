@@ -1,0 +1,40 @@
+.container-cadastroproduto{
+    width: 1450px;
+    margin: 0 auto;
+    margin-left: 397px;
+    padding-top: 50px;
+}
+
+.principal-cadastroproduto{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.principal-cadastroproduto input{
+    width: calc(90%/4);
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+}
+.principal-cadastroproduto input::placeholder{
+    font-weight: bold;
+}
+
+nav ul.cadastroproduto{
+    display: flex;
+}
+nav ul.cadastroproduto li{
+    margin-top: 30px;
+    margin-right: 30px;
+    list-style-type: none;
+    cursor: pointer;
+}
+nav ul.cadastroproduto li:first-child{
+
+    border-top: 4px solid black;
+}
+
+
