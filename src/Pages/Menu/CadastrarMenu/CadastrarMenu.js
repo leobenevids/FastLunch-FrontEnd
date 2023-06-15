@@ -1,18 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Container,
-  TextField,
-  Typography,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  Paper,
-} from "@mui/material";
+import { Box, Button, Card, Container, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { getMenu, registerMenu } from "../../../util/apiHelper";
@@ -57,14 +45,6 @@ const CadastrarMenu = () => {
     },
   });
 
-  useEffect(async () => {
-    if (id) {
-      const response = await getMenu(id);
-      console.log(response);
-      setOrder(response);
-    }
-  }, [id]);
-
   const registerNewMenu = async (menu_values) => {
     await registerMenu(menu_values);
     navigate(0);
@@ -83,29 +63,35 @@ const CadastrarMenu = () => {
   };
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        height: "80vh",
-        margin: "3rem auto",
-        flexDirection: "column",
-        justifyContent: "space-between",
+    <form
+      onSubmit={formik.handleSubmit}
+      style={{
+        width: "100%",
       }}
     >
-      <form onSubmit={formik.handleSubmit}>
-        <Title title={"Cadastrar Cardápio"} />
-
+      <Title title={"Cadastrar Cardápio"} />
+      <Card
+        style={{
+          height: "30vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "1rem",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
-            height: "30vh",
             justifyContent: "space-around",
           }}
-          pl={1}
-          pr={1}
         >
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
             <TextField
               label="Código"
               placeholder="000000-0"
@@ -146,29 +132,33 @@ const CadastrarMenu = () => {
               helperText={formik.touched.nomePrato && formik.errors.nomePrato}
             />
           </Box>
-
-          <TextField
-            label="Descrição do Prato"
-            placeholder="Insira um descrição sobre o prato"
-            variant="standard"
-            name="descricaoPrato"
-            value={formik.values.descricaoPrato}
-            onChange={formik.handleChange}
-            error={
-              formik.touched.descricaoPrato &&
-              Boolean(formik.errors.descricaoPrato)
-            }
-            helperText={
-              formik.touched.descricaoPrato && formik.errors.descricaoPrato
-            }
-          />
         </Box>
+        <TextField
+          label="Descrição do Prato"
+          placeholder="Insira um descrição sobre o prato"
+          variant="standard"
+          name="descricaoPrato"
+          value={formik.values.descricaoPrato}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.descricaoPrato &&
+            Boolean(formik.errors.descricaoPrato)
+          }
+          helperText={
+            formik.touched.descricaoPrato && formik.errors.descricaoPrato
+          }
+        />
 
-        <Title title="Preço Atual" />
-        <Box sx={{ height: "30vh", display: "flex", justifyContent: "space-between"}}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <TextField
             type="text"
             label="Restaurante"
+            placeholder="Nome do restaurante"
             variant="standard"
             name="nomeRestaurante"
             value={formik.values.nomeRestaurante}
@@ -224,17 +214,17 @@ const CadastrarMenu = () => {
             }
           />
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "space-evenly" }} mt={2}>
-          <Button variant="contained" color="success" type="submit">
-            Confirmar
-          </Button>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }} mt={2}>
           <Button variant="outlined" color="error" onClick={() => navigate(-1)}>
             Cancelar
           </Button>
+          <Button variant="contained" type="submit" sx={{ marginLeft: "1rem" }}>
+            Confirmar
+          </Button>
         </Box>
-      </form>
-    </Container>
+      </Card>
+    </form>
   );
-}
+};
 
 export default CadastrarMenu;

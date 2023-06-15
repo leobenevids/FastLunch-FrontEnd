@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { createRestaurant } from "../../../util/apiHelper";
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, Container, TextField, Typography } from "@mui/material";
 import Title from "../../../Components/Title/Title";
 
 function NovoRestaurante() {
@@ -37,13 +37,9 @@ function NovoRestaurante() {
   };
 
   return (
-    <Container
+    <Card
       sx={{
-        display: "flex",
-        height: "80vh",
-        margin: "3rem auto",
-        flexDirection: "column",
-        justifyContent: "space-between",
+        width: "100%", padding: "1rem"
       }}
     >
       <form onSubmit={formik.handleSubmit}>
@@ -64,7 +60,7 @@ function NovoRestaurante() {
           <TextField
             label="CNPJ"
             variant="standard"
-            placeholder="000.000.000/0001-00"
+            placeholder="000.000.000/0000-00"
             size="small"
             name="cnpj"
             value={formik.values.cnpj}
@@ -102,23 +98,27 @@ function NovoRestaurante() {
             name="media_entrega"
             value={formik.values.media_entrega}
             onChange={formik.handleChange}
-            error={formik.touched.media_entrega && Boolean(formik.errors.media_entrega)}
-            helperText={formik.touched.media_entrega && formik.errors.media_entrega}
+            error={
+              formik.touched.media_entrega &&
+              Boolean(formik.errors.media_entrega)
+            }
+            helperText={
+              formik.touched.media_entrega && formik.errors.media_entrega
+            }
           />
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "space-evenly" }} mt={4}>
-          <Button variant="contained" color="success" type="submit">
-            Confirmar
-          </Button>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }} mt={4}>
           <Button variant="outlined" color="error" onClick={() => navigate(-1)}>
             Cancelar
           </Button>
+          <Button variant="contained" type="submit" sx={{marginLeft: "1rem"}}>
+            Confirmar
+          </Button>
         </Box>
       </form>
-    </Container>
+    </Card>
   );
 }
 
-export default NovoRestaurante
-
+export default NovoRestaurante;

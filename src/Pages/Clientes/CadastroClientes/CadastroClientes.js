@@ -5,13 +5,14 @@ import * as Yup from "yup";
 import {
   Box,
   Button,
+  Card,
   Container,
   Grid,
   TextField,
   Typography,
 } from "@mui/material";
 import Title from "../../../Components/Title/Title";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const CadastroClientes = () => {
   const navigate = useNavigate();
@@ -55,17 +56,9 @@ const CadastroClientes = () => {
   };
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        height: "80vh",
-        margin: "3rem auto",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
-    >
-      <form onSubmit={formik.handleSubmit}>
-        <Title title={"Cadastrar cliente"} />
+    <form onSubmit={formik.handleSubmit} style={{ width: "100%" }}>
+      <Title title={"Cadastrar cliente"} />
+      <Card sx={{ width: "100%", padding: "1rem" }}>
         <Grid container spacing={2} justifyContent="space-around" p={2} mt={2}>
           <Grid container direction="column" spacing={2} item xs={4} p={2}>
             <Typography variant="h6">Dados Pessoais</Typography>
@@ -161,21 +154,20 @@ const CadastroClientes = () => {
           </Grid>
         </Grid>
 
-        <Box sx={{ display: "flex", justifyContent: "space-evenly" }} mt={4}>
-          <Button variant="contained" color="success" type="submit">
-            Confirmar
-          </Button>
-          <Button
-            variant="outlined"
-            color="error"
-            onClick={() => navigate(-1)}
-          >
+        <Box
+          sx={{ display: "flex", justifyContent: "flex-end", width: "90%" }}
+          mt={2}
+        >
+          <Button variant="outlined" color="error" onClick={() => navigate(-1)}>
             Cancelar
           </Button>
+          <Button variant="contained" type="submit" sx={{ marginLeft: "1rem" }}>
+            Confirmar
+          </Button>
         </Box>
-      </form>
-    </Container>
+      </Card>
+    </form>
   );
-}
+};
 
 export default CadastroClientes;

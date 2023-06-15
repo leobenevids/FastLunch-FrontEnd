@@ -1,113 +1,233 @@
 import "./MenuLateral.css";
-import React, { useContext } from "react";
-import { AuthContext } from "../../Contexts/Auth";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Permission from "../../Contexts/Permission";
-import $ from "jquery";
+import {
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@mui/material";
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import HistoryIcon from "@mui/icons-material/History";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { AuthContext } from "../../Contexts/Auth";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function MenuLateral() {
-  const navigate = useNavigate()
+  const { logout } = useContext(AuthContext);
+  const [financeiroAnchorEl, setFinanceiroAnchorEl] = useState(null);
+  const [cardapioAnchorEl, setCardapioAnchorEl] = useState(null);
+
+  const handleFinanceiroMenuOpen = (event) => {
+    setFinanceiroAnchorEl(event.currentTarget);
+  };
+
+  const handleFinanceiroMenuClose = () => {
+    setFinanceiroAnchorEl(null);
+  };
+
+  const handleCardapioMenuOpen = (event) => {
+    setCardapioAnchorEl(event.currentTarget);
+  };
+
+  const handleCardapioMenuClose = () => {
+    setCardapioAnchorEl(null);
+  };
+  const navigate = useNavigate();
 
   if (localStorage.getItem("usuario")) {
     var Id = JSON.parse(localStorage.getItem("usuario"));
   }
-  const { logout } = useContext(AuthContext);
-  const handleLogout = () => {
-    logout();
-  };
-
-  $(".config").on("click", function () {
-    $(".logout-on").toggle();
-  });
 
   return (
-    <div className="container-menu-lateral">
-      <div className="menu-lateral">
-        <div className="config"></div>
-        <div className="logout-on">
-          <div className="icone-perfil"></div>
-          <button className="logout-btn" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-        <div className="foto-perfil">
-          <img className="foto-perfil" src={"https://cdn-icons-png.flaticon.com/512/2206/2206368.png" || Id?.logo} />
-        </div>
+    <Box
+      sx={{
+        height: "100%",
+        width: "350px",
+        backgroundColor: "#111821",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        position: "fixed",
+        zIndex: 2,
+        justifyContent: "space-evenly",
+      }}
+    >
+      <Box>
+        <img
+          className="foto-perfil"
+          src={
+            "https://static.vecteezy.com/system/resources/thumbnails/012/210/707/small/worker-employee-businessman-avatar-profile-icon-vector.jpg" ||
+            Id?.logo
+          }
+        />
         <p style={{ color: "white", textAlign: "center" }}>{Id?.nome}</p>
-        <nav>
-          <ul>
-            <Permission permissions={["admin"]}>
-                <li onClick={() => navigate("/admin/restaurants")}>
-                  <div className="icone-admin"></div>Admin
-                </li>
-            </Permission>
-            <Permission permissions={["admin", "gestor", "cliente"]}>
-              <li className="financeiro">
-                <div className="icone-financeiro"></div>Financeiro
-                <ul>
-                  <div className="degrade"></div>
-                  <li>
-                    <h1>Financeiro</h1>
-                  </li>
-                    <li onClick={() => navigate("/clients")}>
-                      <p>Clientes</p>
-                    </li>
-                  <li>
-                    <p>Produtos</p>
-                  </li>
-                  <li>
-                    <p>Painel de vendas</p>
-                  </li>
+      </Box>
+      <List>
+        <Permission permissions={["admin"]}>
+          <ListItem className="list-item">
+            <ListItemButton onClick={() => navigate("/admin/restaurants")}>
+              <AdminPanelSettingsIcon className="list-item-icon" />
 
-                  <li>
-                    <h1>Caixa</h1>
-                  </li>
-                    <li onClick={() => navigate("/caixageral")}>
-                      <p>Caixa geral</p>
-                    </li>
-                    <li onClick={() => navigate("/flashcaixa")}>
-                      <p>Flash de caixa</p>
-                    </li>
+              <ListItemText primary="Administrador" />
+            </ListItemButton>
+          </ListItem>
+        </Permission>
+        <Divider />
+        <Permission permissions={["admin", "gestor", "cliente"]}>
+          <ListItem className="list-item">
+            <ListItemButton onClick={handleFinanceiroMenuOpen}>
+              <LocalAtmIcon className="list-item-icon" />
+              <ListItemText primary="Financeiro" />
+            </ListItemButton>
+            <Menu
+              anchorEl={financeiroAnchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(financeiroAnchorEl)}
+              onClose={handleFinanceiroMenuClose}
+            >
+              <Typography p={1}>
+                <b>Financeiro</b>
+              </Typography>
+              <Divider />
+              <MenuItem
+                onClick={() => {
+                  handleFinanceiroMenuClose();
+                  navigate("/clients");
+                }}
+              >
+                Clientes
+              </MenuItem>
+              <MenuItem>Produtos</MenuItem>
+              <MenuItem>Painel de Vendas</MenuItem>
 
-                  <li>
-                    <h1>Cadastro</h1>
-                  </li>
-                    <li onClick={() => navigate("/products/create")}>
-                      <p>Cadastro de produtos</p>
-                    </li>
-                    <li onClick={() => navigate("/clients/create")}>
-                      <p>Cadastro de clientes</p>
-                    </li>
-                </ul>
-              </li>
-              <li>
-                <div className="icone-cardapio"></div>Cardápio
-                <ul>
-                  <div className="degrade"></div>
-                  <li>
-                    <h1>Cardápio</h1>
-                  </li>
-                    <li onClick={() => navigate("/menus")}>
-                      <p>Mostrar cardápio</p>
-                    </li>
-                    <li onClick={() => navigate("/menus/create")}>
-                      <p>Cadastrar cardápio</p>
-                    </li>
-                </ul>
-              </li>
-              <li>
-                <div className="icone-estoque"></div>Estoque
-              </li>
-                <li onClick={() => navigate("/historico")}>
-                  <div className="icone-historico"></div>Histórico
-                </li>
-                <li onClick={() => navigate("/orders")}>
-                  <div className="icone-pedidos"></div>Pedidos
-                </li>
-            </Permission>
-          </ul>
-        </nav>
-      </div>
-    </div>
+              <Typography p={1} mt={1}>
+                <b>Caixa</b>
+              </Typography>
+              <Divider />
+              <MenuItem
+                onClick={() => {
+                  handleFinanceiroMenuClose();
+                  navigate("/caixageral");
+                }}
+              >
+                Caixa Geral
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleFinanceiroMenuClose();
+                  navigate("/flashcaixa");
+                }}
+              >
+                Flash de Caixa
+              </MenuItem>
+              <Typography p={1} mt={1}>
+                <b>Cadastro</b>
+              </Typography>
+              <Divider />
+              <MenuItem
+                onClick={() => {
+                  handleFinanceiroMenuClose();
+                  navigate("/products/create");
+                }}
+              >
+                Cadastro de Produtos
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleFinanceiroMenuClose();
+                  navigate("/clients/create");
+                }}
+              >
+                Cadastro de Clientes
+              </MenuItem>
+            </Menu>
+          </ListItem>
+
+          <ListItem className="list-item">
+            <ListItemButton onClick={handleCardapioMenuOpen}>
+              <RestaurantMenuIcon className="list-item-icon" />
+              <ListItemText primary="Cardápio" />
+            </ListItemButton>
+            <Menu
+              anchorEl={cardapioAnchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(cardapioAnchorEl)}
+              onClose={handleCardapioMenuClose}
+            >
+              <MenuItem
+                onClick={() => {
+                  handleCardapioMenuClose();
+                  navigate("/menus");
+                }}
+              >
+                Mostrar Cardápios
+              </MenuItem>
+              <Divider />
+              <MenuItem
+                onClick={() => {
+                  handleCardapioMenuClose();
+                  navigate("/menus/create");
+                }}
+              >
+                Cadastrar Cardápio
+              </MenuItem>
+            </Menu>
+          </ListItem>
+
+          <ListItem className="list-item">
+            <ListItemButton>
+              <StorefrontIcon className="list-item-icon" />
+              <ListItemText primary="Estoque" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem className="list-item">
+            <ListItemButton onClick={() => navigate("/historico")}>
+              <HistoryIcon className="list-item-icon" />
+              <ListItemText primary="Histórico" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem className="list-item" onClick={() => navigate("/orders")}>
+            <ListItemButton>
+              <DeliveryDiningIcon className="list-item-icon" />
+              <ListItemText primary="Pedidos" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem className="list-item">
+            <ListItemButton onClick={() => logout()}>
+              <LogoutIcon className="list-item-icon" />
+              <ListItemText primary="Sair" />
+            </ListItemButton>
+          </ListItem>
+        </Permission>
+      </List>
+    </Box>
   );
 }

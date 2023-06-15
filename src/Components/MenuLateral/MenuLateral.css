@@ -1,228 +1,28 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.clear{
-    clear: both;
-}
-.container-menu-lateral{
-    position: relative;
-    width: 339px;
-    height: 100vh;
-    float: left;
-}
-
-/* LOGOUT */
-.config{
-    cursor: pointer;
-}
-.logout-off{
-    display: none;
-    transition: 2s;
-}
-
-.logout-on{
-    border: 1px solid #9B9B9B;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    position: absolute;
-    z-index: 10;
-    top: 45px;
-    left:200px;
-    display: none;
-    transition: 2s;
-}
-
-button.logout-btn{
-    width: 243px;
-    height: 56px;
-    color: white;
-    background-color: #30353B;
-    font-size: 24px;
-    font-weight: bold;
-    border: 1px solid #ccc;
-    outline: none;
-    cursor: pointer;
-    margin: 10px 15px;
-    border-radius: 5px;
-}
-
-/*  */
-.menu-lateral{
-    width: 339px;
-    height: 1080px;
-    background-color: #111821;
-    float: left;
-    position: fixed;
-    top: 0;
-    z-index: 2;
-}
-
-.menu-lateral .config{
-    margin: 34px;
-    width: 43px;
-    height: 43px;
-    background-image: url(../../images/config.png);
-    background-size: 100% 100%;
-}
-.menu-lateral .foto-perfil{
-    width: 112px;
-    height: 112px;
-    border-radius: 56px;
-    margin: 0 auto;
+.foto-perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
     margin-bottom: 20px;
 }
 
-.menu-lateral h3{
-    color: white;
-    font-size: 22px;
-    text-align: center;
-    margin-bottom:30px;
+.list-item {
+    color: #fff;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+
+    &:hover {
+        color: #d13d48;
+        opacity: 1;
+        transform: scale(1.1);
+    }
 }
 
-nav ul{
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-nav ul li{
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    width: 100%;
-    height: 90px;
-    margin: 10px 0;
-    color: #30353B;
-    font-size: 17px;
-   
-}
-
-nav ul li:hover{
-    border-right: 8px solid linear-gradient(180deg, #D13D48 0%, #591B1F 100%);;
-}
-
-
-nav ul li .icone-financeiro{
-    width: 34px;
-    height:24px;
-    background-image: url(../../images/financeiro-desativado.svg);
-    background-size: 100% 100%;
-    margin-right: 30px;
-}
-nav ul li .icone-cardapio{
-    width: 34px;
-    height:24px;
-    background-image: url(../../images/cardapio-desativado.svg);
-    background-size: 100% 100%;
-    margin-right: 30px;
-}
-nav ul li .icone-estoque{
-    width: 34px;
-    height:24px;
-    background-image: url(../../images/estoque-desativado.svg);
-    background-size: 100% 100%;
-    margin-right: 30px;
-}
-nav ul li .icone-historico{
-   width: 34px;
-    height:24px;
-    background-image: url(../../images/historico-desativado.svg);
-    background-size: 100% 100%;
-    margin-right: 30px;
-}
-nav ul li .icone-pedidos{
-    width: 34px;
-    height:24px;
-    background-image: url(../../images/pedidos-desativado.svg);
-    background-size: 100% 100%;
-    margin-right: 30px;
-}
-
-/* animação */
-nav ul li:hover{
-    color: white;
-    cursor: pointer;
-    font-size: 20px;
-    transition: 0.3s;
-}
-
-nav ul li:hover > .icone-financeiro{
-    width: 40px;
-    height:31px;
-    transition: 0.3s;
-    background-image: url(../../images/financeiro-ativado.svg);
-}
-nav ul li:hover > .icone-cardapio{
-    width: 40px;
-    height:31px;
-    background-image: url(../../images/cardapio-ativado.svg);
-}
-nav ul li:hover > .icone-estoque{
-    width: 40px;
-    height:31px;
-    background-image: url(../../images/estoque-ativado.svg);
-}
-nav ul li:hover > .icone-historico{
-    width: 40px;
-    height:31px;
-    background-image: url(../../images/historico-ativado.svg);
-}
-nav ul li:hover > .icone-pedidos{
-    width: 40px;
-    height:31px;
-    background-image: url(../../images/pedidos-ativado.svg);
-}
-
-
-
-/* SUB MENU*/
-
-.container-menu-lateral nav ul li:hover > ul{
-    display: block;
-}
-.container-menu-lateral nav ul li ul{
-    position: absolute;
-    width: 234px;
-    height: 693px;
-    left: 339px;
-    background: white;
-    top: 350px;
-    z-index: 99;
-    border: 1px solid #ccc;
-    display: none;
-}
-
-.container-menu-lateral nav ul li ul .degrade{
-    width: 100%;
-    height: 14px;
-    background: linear-gradient(180deg, #D13D48 0%, #591B1F 100%);
-
-}
-.container-menu-lateral nav ul li ul li:hover{
-    color: black!important;
-    transition: 0.3s;
-}
-.container-menu-lateral nav ul li ul li p:hover{
-    color: black!important;
-    font-size: 16px;
-    transition: 0.3s;
-}
-.container-menu-lateral nav ul li ul li{
-    height: 30px;
-    margin-top: 10px;
-}
-.container-menu-lateral nav ul li ul li p{
-    width: 100%;
-    font-size: 14px;
-    margin-left: 20px;
-    margin-top: 30px;
-}
-.container-menu-lateral nav ul li ul li h1{
-    width: 100%;
-    font-size: 16px;
-    color: #D13D48;
-    margin-top: 30px;
+.list-item-icon {
+    margin-right: 1rem;
 }

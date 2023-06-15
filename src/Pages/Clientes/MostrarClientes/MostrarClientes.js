@@ -28,14 +28,7 @@ const MostrarClientes = () => {
   };
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "80vh",
-        padding: "1rem",
-      }}
-    >
+    <Box>
       <Title title={"Clientes"} />
       <Box mt={2}>
         <Grid container spacing={2}>
@@ -59,8 +52,8 @@ const MostrarClientes = () => {
           )}
         </Grid>
       </Box>
-    </Container>
+    </Box>
   );
-}
+};
 
-export default MostrarClientes
+export default MostrarClientes;

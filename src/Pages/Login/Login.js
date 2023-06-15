@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Contexts/Auth";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Box, Button, Card, Container, Paper, TextField } from "@mui/material";
+import { Button, Container, Paper, TextField } from "@mui/material";
 import logo from "../../images/logo.png";
 import { useNavigate } from "react-router-dom";
+import CustomAlert from "../../Components/Alert/Alert";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const user = localStorage.getItem("usuario")
+  const { login, autenticado } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -17,14 +19,15 @@ const Login = () => {
 
   const onSubmit = async (values) => {
     try {
-      const loggedUser = await login(values.CPF, values.senha);
-      if (loggedUser) {
-        navigate("/Home");
-      }
+      await login(values.CPF, values.senha);
+  
     } catch (error) {
+ 
       console.log(error);
     }
   };
+
+
 
   const formik = useFormik({
     initialValues: {
@@ -44,14 +47,17 @@ const Login = () => {
         justifyContent: "center",
         height: "100vh",
         background: "#111821",
+        '@media (min-width: 1200px)': {
+          maxWidth: 'none !important',
+        }
       }}
     >
       <Paper
         sx={{
-          height: "80%",
+          height: "60%",
           display: "flex",
           flexDirection: "column",
-          width: "40%",
+          width: "25%",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -96,7 +102,7 @@ const Login = () => {
           />
           <Button
             variant="contained"
-            sx={{ background: "#111821" }}
+            sx={{ background: "#111821"}}
             type="submit"
           >
             Entrar

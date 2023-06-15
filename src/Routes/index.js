@@ -1,5 +1,11 @@
-import React, { useContext } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import MenuLateral from "../Components/MenuLateral/MenuLateral";
 import { AuthContext, AuthProvider } from "../Contexts/Auth";
 import Home from "../Pages/Home/Home";
@@ -17,11 +23,21 @@ import EditarPedidos from "../Pages/Pedidos/EditarPedidos";
 import Restaurantes from "../Pages/Admin/Restaurantes";
 import NovoRestaurante from "../Pages/Admin/NovoRestaurante";
 import EditarRestaurante from "../Pages/Admin/EditarRestaurante";
+import ReturnButton from "../Components/ReturnButton/ReturnButton";
+import ContentContainer from "../Components/Layout/Container";
 
-const routes = () => {
+const AppRoutes = () => {
+  const { autenticado, loading } = useContext(AuthContext);
+  const location = useLocation();
+  const shouldRenderMenuLateral = autenticado && location.pathname !== "/login";
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (autenticado && location.pathname === "/") {
+      navigate("/home");
+    }
+  }, [autenticado, location.pathname, navigate]);
+
   const Private = ({ children }) => {
-    const { autenticado, loading } = useContext(AuthContext);
-
     if (loading) {
       return <div className="loading">Carregando...</div>;
     }
@@ -29,8 +45,9 @@ const routes = () => {
     if (!autenticado) {
       return <Navigate to="/" />;
     }
-    return children;
+    return <ContentContainer>{children}</ContentContainer>;
   };
+
   const Permissao = ({ children, permissions }) => {
     const { usuario } = useContext(AuthContext);
     const userPermissions = usuario.perfil;
@@ -46,10 +63,12 @@ const routes = () => {
 
   return (
     <>
-      <Private>
-        <Permissao permissions={["admin", "gestor", "cliente"]}></Permissao>
-        <MenuLateral />
-      </Private>
+      {shouldRenderMenuLateral && (
+        <>
+          <MenuLateral />
+          <ReturnButton />
+        </>
+      )}
       <AuthProvider>
         <Routes>
           {/* Login */}
@@ -83,6 +102,7 @@ const routes = () => {
               <Private>
                 <Permissao permissions={["admin", "gestor", "cliente"]}>
                   <CadastrarMenu />
+                  <ReturnButton />
                 </Permissao>
               </Private>
             }
@@ -258,4 +278,4 @@ const routes = () => {
   );
 };
 
-export default routes;
+export default AppRoutes;

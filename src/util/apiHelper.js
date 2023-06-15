@@ -97,7 +97,7 @@ export async function getOrders() {
   const url = `${baseURL}/pedidos`;
   const url_dev = `${jsonServer}/orders`;
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url_dev);
     return response.data;
   } catch (error) {
     console.log(error);

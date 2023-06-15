@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getOrders } from "../../../util/apiHelper";
-import { Container, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import OrderCard from "../../../Components/Cards/OrderCard/OrderCard";
 import Title from "../../../Components/Title/Title";
 
@@ -17,8 +17,8 @@ const MostrarPedidos = () => {
   }, []);
 
   return (
-    <Container>
-      <Title title={"Pedidos"}/>
+    <Box sx={{ width: "100%"}}>
+      <Title title={"Pedidos"} />
       <Grid container spacing={2}>
         {orders.length ? (
           orders.map((order) => (
@@ -36,8 +36,8 @@ const MostrarPedidos = () => {
           <h1>Nenhum pedido realizados</h1>
         )}
       </Grid>
-    </Container>
+    </Box>
   );
-}
+};
 
-export default MostrarPedidos
+export default MostrarPedidos;

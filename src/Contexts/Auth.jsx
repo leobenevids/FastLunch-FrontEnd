@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [usuario, setUsuario] = useState();
+  const [usuario, setUsuario] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
     if (recoveredUser) {
       setUsuario(JSON.parse(recoveredUser));
     }
-
     setLoading(false);
   }, []);
 
@@ -27,11 +26,11 @@ export const AuthProvider = ({ children }) => {
         perfil: user.perfil,
         logo: user.logo,
       };
+      setUsuario(loggedUser)
       localStorage.setItem("usuario", JSON.stringify(loggedUser));
-      return loggedUser;
+      navigate("/home")
     } catch (error) {
       console.log(error);
-      throw error;
     }
   };
 

@@ -18,38 +18,29 @@ const MostrarMenu = () => {
   }, []);
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "80vh",
-        padding: "1rem",
-      }}
-    >
+    <Box mt={2}>
       <Title title={"Cardápios"} />
-      <Box mt={2}>
-        <Grid container spacing={2}>
-          {menus.length ? (
-            menus.map((menu) => (
-              <Grid item xs={12} sm={6} md={4} key={menu.id}>
-                <MenuCard
-                  nomePrato={menu.nome}
-                  fotoPrato={menu.foto}
-                  descricaoPrato={menu.descricao}
-                  valor={menu.valor_atual}
-                  id={menu.id}
-                />
-              </Grid>
-            ))
-          ) : (
-            <Grid item xs={12}>
-              <Box>Sem menus cadastrados</Box>
+      <Grid container spacing={2}>
+        {menus.length ? (
+          menus.map((menu) => (
+            <Grid item xs={12} sm={6} md={4} key={menu.id}>
+              <MenuCard
+                nomePrato={menu.nome}
+                fotoPrato={menu.foto}
+                descricaoPrato={menu.descricao}
+                valor={menu.valor_atual}
+                id={menu.id}
+              />
             </Grid>
-          )}
-        </Grid>
-      </Box>
-    </Container>
+          ))
+        ) : (
+          <Grid item xs={12}>
+            <Box>Sem menus cadastrados</Box>
+          </Grid>
+        )}
+      </Grid>
+    </Box>
   );
-}
+};
 
 export default MostrarMenu;
