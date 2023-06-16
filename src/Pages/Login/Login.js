@@ -1,17 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import { AuthContext } from "../../Contexts/Auth";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Container, Paper, TextField } from "@mui/material";
 import logo from "../../images/logo.png";
 import { useNavigate } from "react-router-dom";
-import CustomAlert from "../../Components/Alert/Alert";
+import theme from "../../Theme/theme";
 
 const Login = () => {
-  const user = localStorage.getItem("usuario")
-  const { login, autenticado } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  
   const validationSchema = Yup.object().shape({
     CPF: Yup.string().required("Usuário obrigatório"),
     senha: Yup.string().required("Senha obrigatória"),
@@ -20,14 +19,11 @@ const Login = () => {
   const onSubmit = async (values) => {
     try {
       await login(values.CPF, values.senha);
-  
+      navigate("/home")
     } catch (error) {
- 
       console.log(error);
     }
   };
-
-
 
   const formik = useFormik({
     initialValues: {
@@ -46,10 +42,10 @@ const Login = () => {
         alignItems: "center",
         justifyContent: "center",
         height: "100vh",
-        background: "#111821",
-        '@media (min-width: 1200px)': {
-          maxWidth: 'none !important',
-        }
+        background: theme.palette.primary.main,
+        "@media (min-width: 1200px)": {
+          maxWidth: "none !important",
+        },
       }}
     >
       <Paper
@@ -100,11 +96,7 @@ const Login = () => {
             error={formik.touched.senha && Boolean(formik.errors.senha)}
             helperText={formik.touched.senha && formik.errors.senha}
           />
-          <Button
-            variant="contained"
-            sx={{ background: "#111821"}}
-            type="submit"
-          >
+          <Button variant="contained" color="primary" type="submit">
             Entrar
           </Button>
         </form>

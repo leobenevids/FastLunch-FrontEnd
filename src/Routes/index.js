@@ -27,10 +27,11 @@ import ReturnButton from "../Components/ReturnButton/ReturnButton";
 import ContentContainer from "../Components/Layout/Container";
 
 const AppRoutes = () => {
-  const { autenticado, loading } = useContext(AuthContext);
+  const { autenticado } = useContext(AuthContext);
   const location = useLocation();
   const shouldRenderMenuLateral = autenticado && location.pathname !== "/login";
   const navigate = useNavigate();
+
   useEffect(() => {
     if (autenticado && location.pathname === "/") {
       navigate("/home");
@@ -38,10 +39,6 @@ const AppRoutes = () => {
   }, [autenticado, location.pathname, navigate]);
 
   const Private = ({ children }) => {
-    if (loading) {
-      return <div className="loading">Carregando...</div>;
-    }
-
     if (!autenticado) {
       return <Navigate to="/" />;
     }

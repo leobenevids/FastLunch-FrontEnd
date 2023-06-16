@@ -7,15 +7,13 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const recoveredUser = localStorage.getItem("usuario");
 
   useEffect(() => {
-    const recoveredUser = localStorage.getItem("usuario");
     if (recoveredUser) {
       setUsuario(JSON.parse(recoveredUser));
     }
-    setLoading(false);
-  }, []);
+  }, [recoveredUser]);
 
   const login = async (username, password) => {
     try {
@@ -26,9 +24,8 @@ export const AuthProvider = ({ children }) => {
         perfil: user.perfil,
         logo: user.logo,
       };
-      setUsuario(loggedUser)
+      setUsuario(loggedUser);
       localStorage.setItem("usuario", JSON.stringify(loggedUser));
-      navigate("/home")
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +39,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ autenticado: !!usuario, usuario, loading, login, logout }}
+      value={{ autenticado: !!usuario, usuario, login, logout }}
     >
       {children}
     </AuthContext.Provider>

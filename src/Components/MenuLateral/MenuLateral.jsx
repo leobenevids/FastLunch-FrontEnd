@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 import Permission from "../../Contexts/Permission";
 import {
   Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Divider,
   List,
   ListItem,
@@ -21,12 +26,13 @@ import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { AuthContext } from "../../Contexts/Auth";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import theme from "../../Theme/theme";
 
 export default function MenuLateral() {
   const { logout } = useContext(AuthContext);
   const [financeiroAnchorEl, setFinanceiroAnchorEl] = useState(null);
   const [cardapioAnchorEl, setCardapioAnchorEl] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
 
   const handleFinanceiroMenuOpen = (event) => {
     setFinanceiroAnchorEl(event.currentTarget);
@@ -54,7 +60,7 @@ export default function MenuLateral() {
       sx={{
         height: "100%",
         width: "350px",
-        backgroundColor: "#111821",
+        backgroundColor: theme.palette.primary.main,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -66,6 +72,7 @@ export default function MenuLateral() {
       <Box>
         <img
           className="foto-perfil"
+          alt="foto-perfil"
           src={
             "https://static.vecteezy.com/system/resources/thumbnails/012/210/707/small/worker-employee-businessman-avatar-profile-icon-vector.jpg" ||
             Id?.logo
@@ -221,13 +228,28 @@ export default function MenuLateral() {
           </ListItem>
 
           <ListItem className="list-item">
-            <ListItemButton onClick={() => logout()}>
+            <ListItemButton onClick={() => setOpenDialog(!openDialog)}>
               <LogoutIcon className="list-item-icon" />
               <ListItemText primary="Sair" />
             </ListItemButton>
           </ListItem>
         </Permission>
       </List>
+      <Dialog open={openDialog} onClose={() => setOpenDialog(!openDialog)}>
+        <DialogTitle id="alert-dialog-title">
+          <Typography variant="h6"> Deseja realmente sair?</Typography>
+        </DialogTitle>
+        <Divider />
+        <DialogContent>Você precisará realizar login novamente</DialogContent>
+        <DialogActions>
+          <Button color="error" onClick={() => setOpenDialog(!openDialog)}>
+            Cancelar
+          </Button>
+          <Button color="success" onClick={() => logout()} autoFocus>
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
