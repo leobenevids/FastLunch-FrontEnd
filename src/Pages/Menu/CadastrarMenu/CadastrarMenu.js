@@ -3,13 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Box, Button, Card, Container, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { getMenu, registerMenu } from "../../../util/apiHelper";
+import { registerMenu } from "../../../util/apiHelper";
 import Title from "../../../Components/Title/Title";
 
 const CadastrarMenu = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const [order, setOrder] = useState(null);
 
   const validationSchema = Yup.object().shape({
     codigo: Yup.string().required("Código é obrigatório"),
@@ -47,7 +45,7 @@ const CadastrarMenu = () => {
 
   const registerNewMenu = async (menu_values) => {
     await registerMenu(menu_values);
-    navigate(0);
+    navigate("/menus");
   };
 
   const formatCurrency = (value) => {
@@ -102,7 +100,7 @@ const CadastrarMenu = () => {
               onChange={formik.handleChange}
               error={formik.touched.codigo && Boolean(formik.errors.codigo)}
               helperText={formik.touched.codigo && formik.errors.codigo}
-            />
+              />
 
             <TextField
               label="Foto do Prato"
@@ -116,7 +114,7 @@ const CadastrarMenu = () => {
                 formik.touched.fotoPrato && Boolean(formik.errors.fotoPrato)
               }
               helperText={formik.touched.fotoPrato && formik.errors.fotoPrato}
-            />
+              />
 
             <TextField
               label="Nome do Prato"
@@ -130,7 +128,7 @@ const CadastrarMenu = () => {
                 formik.touched.nomePrato && Boolean(formik.errors.nomePrato)
               }
               helperText={formik.touched.nomePrato && formik.errors.nomePrato}
-            />
+              />
           </Box>
         </Box>
         <TextField
@@ -147,7 +145,7 @@ const CadastrarMenu = () => {
           helperText={
             formik.touched.descricaoPrato && formik.errors.descricaoPrato
           }
-        />
+          />
 
         <Box
           sx={{

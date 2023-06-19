@@ -29,9 +29,11 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import theme from "../../Theme/theme";
 
 export default function MenuLateral() {
+  const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   const [financeiroAnchorEl, setFinanceiroAnchorEl] = useState(null);
   const [cardapioAnchorEl, setCardapioAnchorEl] = useState(null);
+  const [adminAnchorEl, setAdminAnchorEl] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleFinanceiroMenuOpen = (event) => {
@@ -49,7 +51,14 @@ export default function MenuLateral() {
   const handleCardapioMenuClose = () => {
     setCardapioAnchorEl(null);
   };
-  const navigate = useNavigate();
+
+  const handleAdminMenuOpen = (event) => {
+    setAdminAnchorEl(event.currentTarget);
+  };
+
+  const handleAdminMenuClose = () => {
+    setAdminAnchorEl(null);
+  };
 
   if (localStorage.getItem("usuario")) {
     var Id = JSON.parse(localStorage.getItem("usuario"));
@@ -78,16 +87,45 @@ export default function MenuLateral() {
             Id?.logo
           }
         />
-        <p style={{ color: "white", textAlign: "center" }}>{Id?.nome}</p>
+        <Typography style={{ color: "white", textAlign: "center" }}>{Id?.nome}</Typography>
       </Box>
       <List>
         <Permission permissions={["admin"]}>
           <ListItem className="list-item">
-            <ListItemButton onClick={() => navigate("/admin/restaurants")}>
+            <ListItemButton onClick={handleAdminMenuOpen}>
               <AdminPanelSettingsIcon className="list-item-icon" />
-
               <ListItemText primary="Administrador" />
             </ListItemButton>
+            <Menu
+              anchorEl={adminAnchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(adminAnchorEl)}
+              onClose={handleAdminMenuClose}
+            >
+              <MenuItem
+                onClick={() => {
+                  handleAdminMenuClose();
+                  navigate("/admin/restaurants");
+                }}
+              >
+                Mostrar Restaurantes
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleAdminMenuClose();
+                  navigate("/admin/restaurants/create");
+                }}
+              >
+                Cadastrar Restaurante
+              </MenuItem>
+            </Menu>
           </ListItem>
         </Permission>
         <Divider />
@@ -213,12 +251,12 @@ export default function MenuLateral() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem className="list-item">
+          {/* <ListItem className="list-item">
             <ListItemButton onClick={() => navigate("/historico")}>
               <HistoryIcon className="list-item-icon" />
               <ListItemText primary="Histórico" />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
 
           <ListItem className="list-item" onClick={() => navigate("/orders")}>
             <ListItemButton>
@@ -240,7 +278,7 @@ export default function MenuLateral() {
           <Typography variant="h6"> Deseja realmente sair?</Typography>
         </DialogTitle>
         <Divider />
-        <DialogContent>Você precisará realizar login novamente</DialogContent>
+        <DialogContent><Typography>Você precisará realizar login novamente</Typography></DialogContent>
         <DialogActions>
           <Button color="error" onClick={() => setOpenDialog(!openDialog)}>
             Cancelar

@@ -14,7 +14,7 @@ const ClientCard = ({ nome, bairro, rua, telefone, foto }) => {
   const [showModal, setShowModal] = useState(false)
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia sx={{ height: 200 }} image={foto} title={nome} />
+      <CardMedia sx={{ height: 200 }} image={foto || "https://e7.pngegg.com/pngimages/136/22/png-clipart-user-profile-computer-icons-girl-customer-avatar-angle-heroes-thumbnail.png"} title={nome} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {nome}

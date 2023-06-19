@@ -22,7 +22,7 @@ export async function authenticate(username, password) {
 // Cardápios
 export async function getMenus() {
   const url = `${baseURL}/cardapio`;
-  const url_dev = `${jsonServer}/menus`
+  const url_dev = `${jsonServer}/menus`;
 
   try {
     const response = await axios.get(url_dev);
@@ -33,7 +33,7 @@ export async function getMenus() {
 }
 
 export async function getMenu(menu_id) {
-  const url_dev = `${jsonServer}/menus/${menu_id}`
+  const url_dev = `${jsonServer}/menus/${menu_id}`;
 
   try {
     const response = await axios.get(url_dev);
@@ -45,10 +45,20 @@ export async function getMenu(menu_id) {
 
 export async function registerMenu(menu_params) {
   const url = `${baseURL}/cardapio/register`;
-  const url_dev = `${jsonServer}/menus`
+  const url_dev = `${jsonServer}/menus`;
 
   try {
-    const response = await axios.post(url_dev, menu_params );
+    const response = await axios.post(url_dev, menu_params);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function updateMenu(menu_params) {
+  const url_dev = `${jsonServer}/menus`;
+  try {
+    const response = await axios.patch(url_dev, menu_params);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -73,7 +83,7 @@ export async function registerClient(client_params) {
   const url_dev = `${jsonServer}/clients`;
 
   try {
-    const response = await axios.post(url_dev, client_params );
+    const response = await axios.post(url_dev, client_params);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -106,10 +116,20 @@ export async function getOrders() {
 
 // Restaurantes
 export async function createRestaurant(rest_params) {
-  const url = `${baseURL}/restaurante`;
-  const url_dev = `${jsonServer}/restaurants`
+  const url = `${baseURL}/auth/register`;
+  // const url_dev = `${jsonServer}/restaurants`;
   try {
-    const response = await axios.post(url_dev, rest_params);
+    const response = await axios.post(url, rest_params);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getRestaurants() {
+  const url = `${baseURL}/auth/restaurantes`;
+  try {
+    const response = await axios.get(url);
     return response.data;
   } catch (error) {
     console.log(error);

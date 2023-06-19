@@ -132,7 +132,7 @@ const AppRoutes = () => {
             element={
               <Private>
                 <Permissao permissions={["admin", "gestor", "cliente"]}>
-                  <MostrarMenu />
+                  <CadastrarMenu />
                 </Permissao>
               </Private>
             }
@@ -189,7 +189,7 @@ const AppRoutes = () => {
               </Private>
             }
           />
-          <Route
+          {/* <Route
             path="/historico"
             element={
               <Private>
@@ -198,7 +198,7 @@ const AppRoutes = () => {
                 </Permissao>
               </Private>
             }
-          />
+          /> */}
           <Route
             path="/orders"
             element={
