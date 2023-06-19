@@ -26,15 +26,17 @@ import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { AuthContext } from "../../../Contexts/Auth";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import PeopleIcon from "@mui/icons-material/People";
 import theme from "../../../Theme/theme";
 
 export default function MenuLateral() {
   const navigate = useNavigate();
   const { logout, usuario } = useContext(AuthContext);
   const [financeiroAnchorEl, setFinanceiroAnchorEl] = useState(null);
-  const [cardapioAnchorEl, setCardapioAnchorEl] = useState(null);
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
   const [adminAnchorEl, setAdminAnchorEl] = useState(null);
-  const [openDialog, setOpenDialog] = useState(false);
+  const [clientsAnchorEl, setClientsAnchorEl] = useState(null);
+  const [openDialog, setOpenDialog] = useState(null);
 
   const handleFinanceiroMenuOpen = (event) => {
     setFinanceiroAnchorEl(event.currentTarget);
@@ -45,11 +47,11 @@ export default function MenuLateral() {
   };
 
   const handleCardapioMenuOpen = (event) => {
-    setCardapioAnchorEl(event.currentTarget);
+    setMenuAnchorEl(event.currentTarget);
   };
 
   const handleCardapioMenuClose = () => {
-    setCardapioAnchorEl(null);
+    setMenuAnchorEl(null);
   };
 
   const handleAdminMenuOpen = (event) => {
@@ -58,6 +60,14 @@ export default function MenuLateral() {
 
   const handleAdminMenuClose = () => {
     setAdminAnchorEl(null);
+  };
+
+  const handleClientMenuOpen = (event) => {
+    setClientsAnchorEl(event.currentTarget);
+  };
+
+  const handleClientMenuClose = () => {
+    setClientsAnchorEl(null);
   };
 
   const loggedUser = JSON.parse(localStorage.getItem("usuario"));
@@ -116,7 +126,7 @@ export default function MenuLateral() {
                   navigate("/admin/restaurants");
                 }}
               >
-                Mostrar Restaurantes
+                Visualizar Restaurantes
               </MenuItem>
               <MenuItem
                 onClick={() => {
@@ -149,25 +159,6 @@ export default function MenuLateral() {
               open={Boolean(financeiroAnchorEl)}
               onClose={handleFinanceiroMenuClose}
             >
-              <Typography p={1}>
-                <b>Financeiro</b>
-              </Typography>
-              <Divider />
-              <MenuItem
-                onClick={() => {
-                  handleFinanceiroMenuClose();
-                  navigate("/clients");
-                }}
-              >
-                Clientes
-              </MenuItem>
-              <MenuItem>Produtos</MenuItem>
-              <MenuItem>Painel de Vendas</MenuItem>
-
-              <Typography p={1} mt={1}>
-                <b>Caixa</b>
-              </Typography>
-              <Divider />
               <MenuItem
                 onClick={() => {
                   handleFinanceiroMenuClose();
@@ -176,6 +167,8 @@ export default function MenuLateral() {
               >
                 Caixa Geral
               </MenuItem>
+              <Divider />
+
               <MenuItem
                 onClick={() => {
                   handleFinanceiroMenuClose();
@@ -183,26 +176,6 @@ export default function MenuLateral() {
                 }}
               >
                 Flash de Caixa
-              </MenuItem>
-              <Typography p={1} mt={1}>
-                <b>Cadastro</b>
-              </Typography>
-              <Divider />
-              <MenuItem
-                onClick={() => {
-                  handleFinanceiroMenuClose();
-                  navigate("/products/create");
-                }}
-              >
-                Cadastro de Produtos
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  handleFinanceiroMenuClose();
-                  navigate("/clients/create");
-                }}
-              >
-                Cadastro de Clientes
               </MenuItem>
             </Menu>
           </ListItem>
@@ -213,7 +186,7 @@ export default function MenuLateral() {
               <ListItemText primary="Cardápio" />
             </ListItemButton>
             <Menu
-              anchorEl={cardapioAnchorEl}
+              anchorEl={menuAnchorEl}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "right",
@@ -222,7 +195,7 @@ export default function MenuLateral() {
                 vertical: "top",
                 horizontal: "left",
               }}
-              open={Boolean(cardapioAnchorEl)}
+              open={Boolean(menuAnchorEl)}
               onClose={handleCardapioMenuClose}
             >
               <MenuItem
@@ -231,7 +204,7 @@ export default function MenuLateral() {
                   navigate("/menus");
                 }}
               >
-                Mostrar Cardápios
+                Visualizar Cardápios
               </MenuItem>
               <Divider />
               <MenuItem
@@ -245,18 +218,42 @@ export default function MenuLateral() {
             </Menu>
           </ListItem>
 
-          {/* <ListItem className="list-item">
-            <ListItemButton>
-              <StorefrontIcon className="list-item-icon" />
-              <ListItemText primary="Estoque" />
-            </ListItemButton>
-          </ListItem> */}
-
           <ListItem className="list-item">
-            <ListItemButton onClick={() => navigate("/history")}>
-              <HistoryIcon className="list-item-icon" />
-              <ListItemText primary="Histórico" />
+            <ListItemButton onClick={handleClientMenuOpen}>
+              <PeopleIcon className="list-item-icon" />
+              <ListItemText primary="Clientes" />
             </ListItemButton>
+            <Menu
+              anchorEl={clientsAnchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(clientsAnchorEl)}
+              onClose={handleClientMenuClose}
+            >
+              <MenuItem
+                onClick={() => {
+                  handleClientMenuClose();
+                  navigate("/clients");
+                }}
+              >
+                Visualizar Clientes
+              </MenuItem>
+              <Divider />
+              <MenuItem
+                onClick={() => {
+                  handleClientMenuClose();
+                  navigate("/clients/create");
+                }}
+              >
+                Cadastrar Cliente
+              </MenuItem>
+            </Menu>
           </ListItem>
 
           <ListItem className="list-item" onClick={() => navigate("/orders")}>
@@ -266,6 +263,14 @@ export default function MenuLateral() {
             </ListItemButton>
           </ListItem>
         </Permission>
+
+        <ListItem className="list-item">
+          <ListItemButton onClick={() => navigate("/history")}>
+            <HistoryIcon className="list-item-icon" />
+            <ListItemText primary="Histórico" />
+          </ListItemButton>
+        </ListItem>
+
         <ListItem className="list-item">
           <ListItemButton onClick={() => setOpenDialog(!openDialog)}>
             <LogoutIcon className="list-item-icon" />
@@ -273,6 +278,7 @@ export default function MenuLateral() {
           </ListItemButton>
         </ListItem>
       </List>
+
       <Dialog open={openDialog} onClose={() => setOpenDialog(!openDialog)}>
         <DialogTitle id="alert-dialog-title">
           <Typography variant="h6"> Deseja realmente sair?</Typography>

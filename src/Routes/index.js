@@ -16,9 +16,8 @@ import FlashDeCaixa from "../Pages/FlashDeCaixa/Show";
 import ShowMenus from "../Pages/Menu/Show";
 import RegisterClient from "../Pages/Clientes/Register";
 import ShowClients from "../Pages/Clientes/Show";
-import CadastroProduto from "../Pages/CadastroProdutos/CadastroProduto";
 import CaixaGeral from "../Pages/CaixaGeral";
-import Historico from "../Pages/Historico/Show";
+import History from "../Pages/Historico/Show";
 import Restaurantes from "../Pages/Admin/Restaurantes/Show";
 import RegisterRestaurant from "../Pages/Admin/Restaurantes/Register";
 import ReturnButton from "../Components/Layout/ReturnButton";
@@ -72,7 +71,7 @@ const AppRoutes = () => {
             path="/home"
             element={
               <Private>
-                <Permissao permissions={["admin", "cliente"]}>
+                <Permissao permissions={["cliente"]}>
                   <Home />
                 </Permissao>
               </Private>
@@ -94,7 +93,6 @@ const AppRoutes = () => {
               <Private>
                 <Permissao permissions={["cliente"]}>
                   <RegisterMenu />
-                  <ReturnButton />
                 </Permissao>
               </Private>
             }
@@ -139,23 +137,12 @@ const AppRoutes = () => {
               </Private>
             }
           />
-          {/* Mostrar todos os clientes */}
           <Route
             path="/clients"
             element={
               <Private>
                 <Permissao permissions={["cliente"]}>
                   <ShowClients />
-                </Permissao>
-              </Private>
-            }
-          />
-          <Route
-            path="/products/create"
-            element={
-              <Private>
-                <Permissao permissions={["cliente"]}>
-                  <CadastroProduto />
                 </Permissao>
               </Private>
             }
@@ -185,7 +172,7 @@ const AppRoutes = () => {
             element={
               <Private>
                 <Permissao permissions={["cliente"]}>
-                  <Historico />
+                  <History />
                 </Permissao>
               </Private>
             }
@@ -200,16 +187,6 @@ const AppRoutes = () => {
               </Private>
             }
           />
-          {/* <Route
-            path="/orders/:id"
-            element={
-              <Private>
-                <Permissao permissions={["admin", "gestor", "cliente"]}>
-                  <EditarPedidos />
-                </Permissao>
-              </Private>
-            }
-          /> */}
           <Route
             path="/admin/restaurants"
             element={

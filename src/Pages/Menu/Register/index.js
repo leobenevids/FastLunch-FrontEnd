@@ -49,18 +49,6 @@ const RegisterMenu = () => {
     navigate("/menus");
   };
 
-  const formatCurrency = (value) => {
-    if (!value) return "";
-    const floatValue = parseFloat(value.replace(/[^\d]/g, ""));
-    return `${floatValue.toLocaleString("pt-BR")}`;
-  };
-
-  const handleValueChange = (e) => {
-    const { name, value } = e.target;
-    const formattedValue = formatCurrency(value);
-    formik.setFieldValue(name, formattedValue);
-  };
-
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -150,7 +138,7 @@ const RegisterMenu = () => {
             placeholder="R$ 0.00"
             name="valor_atual"
             value={formik.values.valor_atual}
-            onChange={handleValueChange}
+            onChange={formik.handleChange}
             error={
               formik.touched.valor_atual && Boolean(formik.errors.valor_atual)
             }

@@ -33,7 +33,7 @@ const Home = () => {
         <HomeCard
           image={VerPedidosIcon}
           title="Histórico de Pedidos"
-          route="/orders"
+          route="/history"
         />
       </Box>
     </Permission>
