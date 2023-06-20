@@ -262,14 +262,15 @@ export default function MenuLateral() {
               <ListItemText primary="Pedidos" />
             </ListItemButton>
           </ListItem>
-        </Permission>
 
-        <ListItem className="list-item">
-          <ListItemButton onClick={() => navigate("/history")}>
-            <HistoryIcon className="list-item-icon" />
-            <ListItemText primary="Histórico" />
-          </ListItemButton>
-        </ListItem>
+          <ListItem className="list-item">
+            <ListItemButton onClick={() => navigate("/history")}>
+              <HistoryIcon className="list-item-icon" />
+              <ListItemText primary="Histórico" />
+            </ListItemButton>
+          </ListItem>
+          
+        </Permission>
 
         <ListItem className="list-item">
           <ListItemButton onClick={() => setOpenDialog(!openDialog)}>

@@ -13,7 +13,6 @@ import { getMenu, updateMenu } from "../../../util/apiHelper";
 import { useNavigate } from "react-router-dom";
 
 const EditMenu = ({ openModal, setOpenModal, menuId }) => {
-  const [menu, setMenu] = useState(null);
   const navigate = useNavigate();
   const restaurantId = JSON.parse(localStorage.getItem("usuario")).id;
 
@@ -52,13 +51,23 @@ const EditMenu = ({ openModal, setOpenModal, menuId }) => {
   });
 
   const editMenu = async (menu_values) => {
-    await updateMenu(menu_values);
+    await updateMenu(menu_values, menuId);
     navigate("/menus");
   };
 
   const fetchMenu = async (menu_id) => {
     const response = await getMenu(menu_id);
-    setMenu(response);
+    formik.setValues({
+      nome: response.nome,
+      descricao: response.descricao,
+      foto: response.foto,
+      valor_atual: response.valor_atual,
+      valor_oferta: response.valor_oferta,
+      valor_anterior: response.valor_anterior,
+      usuario_id: restaurantId,
+      status: response.status,
+      categoria: response.categoria,
+    });
   };
 
   useEffect(() => {
@@ -77,6 +86,7 @@ const EditMenu = ({ openModal, setOpenModal, menuId }) => {
           }}
         >
           <TextField
+            sx={{ mb: 1 }}
             label="Nome do Prato"
             placeholder="Insira o nome do prato"
             variant="standard"
@@ -88,6 +98,7 @@ const EditMenu = ({ openModal, setOpenModal, menuId }) => {
             helperText={formik.touched.nome && formik.errors.nome}
           />
           <TextField
+            sx={{ mb: 1 }}
             label="Foto do Prato"
             placeholder="Insira uma url de imagem"
             variant="standard"
@@ -100,21 +111,18 @@ const EditMenu = ({ openModal, setOpenModal, menuId }) => {
           />
 
           <TextField
+            sx={{ mb: 1 }}
             label="Descrição do Prato"
             placeholder="Insira um descrição sobre o prato"
             variant="standard"
             name="descricao"
             value={formik.values.descricao}
             onChange={formik.handleChange}
-            error={
-              formik.touched.descricao &&
-              Boolean(formik.errors.descricao)
-            }
-            helperText={
-              formik.touched.descricao && formik.errors.descricao
-            }
+            error={formik.touched.descricao && Boolean(formik.errors.descricao)}
+            helperText={formik.touched.descricao && formik.errors.descricao}
           />
           <TextField
+            sx={{ mb: 1 }}
             label="Categoria"
             placeholder="Insira a categoria do prato"
             variant="standard"
@@ -127,6 +135,7 @@ const EditMenu = ({ openModal, setOpenModal, menuId }) => {
           />
 
           <TextField
+            sx={{ mb: 1 }}
             type="text"
             label="Valor Atual"
             variant="standard"

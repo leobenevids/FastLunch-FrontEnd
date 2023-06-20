@@ -231,7 +231,7 @@ export async function getRestaurants() {
 }
 
 export async function getRestaurant(rest_id) {
-  const url = `${baseURL}/auth/restauranstes/${rest_id}`;
+  const url = `${baseURL}/auth/id/${rest_id}`;
   try {
     const response = await axios.get(url);
     return response.data;

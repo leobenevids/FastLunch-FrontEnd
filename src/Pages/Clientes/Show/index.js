@@ -47,7 +47,7 @@ const ShowClients = () => {
                   rua={client.rua}
                   telefone={client.telefone}
                   foto={client?.foto}
-                  id={client.id}
+                  id={client._id}
                 />
               </Grid>
             ))

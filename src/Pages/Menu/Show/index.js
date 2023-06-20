@@ -43,13 +43,7 @@ const ShowMenus = () => {
           {menus && menus.length ? (
             menus.map((menu) => (
               <Grid item xs={12} sm={6} md={4} key={menu._id}>
-                <MenuCard
-                  nomePrato={menu.nome}
-                  fotoPrato={menu.foto}
-                  descricaoPrato={menu.descricao}
-                  valor={menu.valor_atual}
-                  id={menu._id}
-                />
+                <MenuCard menu={menu} />
               </Grid>
             ))
           ) : (

@@ -12,8 +12,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { getRestaurant, updateRestaurant } from "../../../util/apiHelper";
 
-const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId }) => {
-  const [restaurant, setRestaurant] = useState(null);
+const EditRestaurant = ({
+  openModal,
+  setOpenModal,
+  restaurantName,
+  restaurantId,
+}) => {
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -45,9 +49,19 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
   });
 
   const fetchRestaurant = async (rest_id) => {
-    const response = await getRestaurant(rest_id)
-    setRestaurant(response)
-  }
+    const response = await getRestaurant(rest_id);
+    formik.setValues({
+      nome: response.nome,
+      cnpj: response.cnpj,
+      email: response.email,
+      endereco: response.endereco,
+      media_entrega: response.media_entrega,
+      senha: response.senha,
+      logo: response.logo,
+      banner: response.banner,
+      categoria: response.categoria
+    })
+  };
 
   const editRestaurant = async (rest_values) => {
     await updateRestaurant(rest_values, restaurantId);
@@ -55,21 +69,22 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
   };
 
   useEffect(() => {
-    fetchRestaurant(restaurantId)
-  }, [])
+    fetchRestaurant(restaurantId);
+  }, []);
 
   return (
     <Dialog open={openModal}>
       <form onSubmit={formik.handleSubmit}>
         <DialogTitle>Editar {restaurantName}</DialogTitle>
-        <DialogContent
-          style={{
+        <DialogContent 
+          sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
           <TextField
+            sx={{ mb: 1 }}
             label="Nome do Restaurante"
             placeholder="Insira o nome do restaurante"
             variant="standard"
@@ -81,6 +96,7 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
             helperText={formik.touched.nome && formik.errors.nome}
           />
           <TextField
+            sx={{ mb: 1 }}
             label="CNPJ"
             variant="standard"
             placeholder="000.000.000/0000-00"
@@ -92,6 +108,7 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
             helperText={formik.touched.cnpj && formik.errors.cnpj}
           />
           <TextField
+            sx={{ mb: 1 }}
             label="Email"
             variant="standard"
             placeholder="Insira o email"
@@ -103,6 +120,7 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
             helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
+            sx={{ mb: 1 }}
             label="Endereço"
             variant="standard"
             placeholder="Insira o endereço"
@@ -114,6 +132,7 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
             helperText={formik.touched.endereco && formik.errors.endereco}
           />
           <TextField
+            sx={{ mb: 1 }}
             label="Logo"
             variant="standard"
             placeholder="Insira a logo do restaurante"
@@ -125,6 +144,7 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
             helperText={formik.touched.logo && formik.errors.logo}
           />
           <TextField
+            sx={{ mb: 1 }}
             label="Banner"
             variant="standard"
             placeholder="Insira o banner do restaurante"
@@ -136,6 +156,7 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
             helperText={formik.touched.banner && formik.errors.banner}
           />
           <TextField
+            sx={{ mb: 1 }}
             label="Média de Entrega"
             variant="standard"
             placeholder="Insira a média de entrega (em minutos)"
@@ -152,6 +173,7 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
             }
           />
           <TextField
+            sx={{ mb: 1 }}
             label="Categoria"
             variant="standard"
             placeholder="Insira a categoria do restaurante"
@@ -162,7 +184,8 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
             error={formik.touched.categoria && Boolean(formik.errors.categoria)}
             helperText={formik.touched.categoria && formik.errors.categoria}
           />
-          <TextField
+          {/* <TextField
+            sx={{ mb: 1 }}
             label="Senha"
             variant="standard"
             placeholder="Insira a senha que será utilizada para logar"
@@ -172,7 +195,7 @@ const EditRestaurant = ({ openModal, setOpenModal, restaurantName, restaurantId 
             onChange={formik.handleChange}
             error={formik.touched.senha && Boolean(formik.errors.senha)}
             helperText={formik.touched.senha && formik.errors.senha}
-          />
+          /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenModal(!openModal)}>Cancelar</Button>

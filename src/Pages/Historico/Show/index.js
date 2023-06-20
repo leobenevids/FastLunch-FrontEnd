@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getRestaurantOrdersHistory } from "../../../util/apiHelper";
 import OrderCard from "../../../Components/Cards/Order";
 import Title from "../../../Components/Layout/Title";
+import SearchOffIcon from "@mui/icons-material/SearchOff";
 
 const History = () => {
   const [ordersHistory, setOrdersHistory] = useState([]);
@@ -46,7 +47,7 @@ const History = () => {
           ) : (
             <Grid item xs={12}>
               <Typography variant="h5">
-                Nenhum histórico de pedidos para esse restaurante
+                <SearchOffIcon /> Nenhum histórico de pedidos para esse restaurante.
               </Typography>
             </Grid>
           )}

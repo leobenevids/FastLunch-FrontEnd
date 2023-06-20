@@ -20,29 +20,33 @@ import EditMenu from "../../Modals/EditMenu";
 import { deleteMenu } from "../../../util/apiHelper";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 
-const MenuCard = ({ nomePrato, fotoPrato, descricaoPrato, valor, id }) => {
+const MenuCard = ({ menu }) => {
   const [openModal, setOpenModal] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const navigate = useNavigate();
 
   const handleDelete = async () => {
-    await deleteMenu(id);
+    await deleteMenu(menu?._id);
     navigate(0);
   };
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <EditMenu openModal={openModal} setOpenModal={setOpenModal} menuId={id} />
-      <CardMedia sx={{ height: 140 }} image={fotoPrato} title={nomePrato} />
+      <EditMenu
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        menuId={menu?._id}
+      />
+      <CardMedia sx={{ height: 140 }} image={menu?.foto} title={menu?.nome} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {nomePrato}
+          {menu?.nome}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {descricaoPrato}
+          {menu?.descricao}
         </Typography>
         <Typography variant="body2" color="text.secondary" mt={1}>
-          R$ {valor}
+          R$ {menu?.valor_atual}
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "flex-end" }}>
