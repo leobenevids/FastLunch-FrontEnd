@@ -19,7 +19,6 @@ const ShowOrders = () => {
   const fetchOrders = async () => {
     try {
       const response = await getRestaurantOrders(restaurantId);
-      // const response = await getOrders();
       setOrders(response);
     } catch (error) {
       console.log(error);
@@ -41,13 +40,9 @@ const ShowOrders = () => {
         <Grid container spacing={2}>
           {orders && orders.length ? (
             orders.map((order) => (
-              <Grid item xs={12} sm={6} md={4} key={order.cliente}>
+              <Grid item xs={12} sm={6} md={4} key={order?._id}>
                 <OrderCard
-                  nomeCliente={order.cliente}
-                  fotoPrato={order.foto}
-                  dataPedido={order.data}
-                  endereco={order.endereco}
-                  status={order.status}
+                  order={order}
                 />
               </Grid>
             ))

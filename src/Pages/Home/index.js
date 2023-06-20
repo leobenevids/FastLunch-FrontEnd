@@ -1,9 +1,9 @@
 import React from "react";
 import Permission from "../../Contexts/Permission";
 import { Box, Container } from "@mui/material";
-import CadastrarMenuIcon from "../../images/cadastrar-menu.svg";
-import VerPedidosIcon from "../../images/ver-pedidos.svg";
-import FlashCaixaIcon from "../../images/flash-caixa.svg";
+import CadastrarMenuIcon from "../../Assets/images/cadastrar-menu.svg";
+import VerPedidosIcon from "../../Assets/images/ver-pedidos.svg";
+import FlashCaixaIcon from "../../Assets/images/flash-caixa.svg";
 
 import HomeCard from "../../Components/Cards/Home";
 

@@ -3,7 +3,7 @@ import { AuthContext } from "../../Contexts/Auth";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Container, Paper, TextField } from "@mui/material";
-import logo from "../../images/logo.png";
+import logo from "../../Assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
 import theme from "../../Theme/theme";
 
