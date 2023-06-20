@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getMenus, getRestaurantMenus } from "../../../util/apiHelper";
+import SearchOffIcon from "@mui/icons-material/SearchOff";
 
 import MenuCard from "../../../Components/Cards/Menu";
 import Title from "../../../Components/Layout/Title";
@@ -39,7 +40,7 @@ const ShowMenus = () => {
         <CircularProgress />
       ) : (
         <Grid container spacing={2}>
-          {menus.length ? (
+          {menus && menus.length ? (
             menus.map((menu) => (
               <Grid item xs={12} sm={6} md={4} key={menu._id}>
                 <MenuCard
@@ -53,7 +54,9 @@ const ShowMenus = () => {
             ))
           ) : (
             <Grid item xs={12}>
-              <Box>Sem menus cadastrados</Box>
+              <Typography variant="h5">
+                <SearchOffIcon /> Nenhum cardápio cadastrado nesse restaurante.
+              </Typography>
             </Grid>
           )}
         </Grid>

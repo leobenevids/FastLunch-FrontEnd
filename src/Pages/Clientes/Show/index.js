@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import Title from "../../../Components/Layout/Title";
 import ClientCard from "../../../Components/Cards/Client";
+import SearchOffIcon from "@mui/icons-material/SearchOff";
 
 const ShowClients = () => {
   const [clients, setClients] = useState([]);
@@ -52,7 +53,10 @@ const ShowClients = () => {
             ))
           ) : (
             <Grid item xs={12}>
-              <Typography variant="h5">Sem clientes cadastrados nesse restaurante</Typography>
+              <Typography variant="h5">
+                <SearchOffIcon />
+                Sem clientes cadastrados nesse restaurante.
+              </Typography>
             </Grid>
           )}
         </Grid>

@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import OrderCard from "../../../Components/Cards/Order";
 import Title from "../../../Components/Layout/Title";
+import SearchOffIcon from "@mui/icons-material/SearchOff";
 
 const ShowOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -53,7 +54,7 @@ const ShowOrders = () => {
           ) : (
             <Grid item xs={12}>
               <Typography variant="h5">
-                Nenhum pedido realizado nesse restaurante
+                <SearchOffIcon /> Nenhum pedido realizado nesse restaurante.
               </Typography>
             </Grid>
           )}
