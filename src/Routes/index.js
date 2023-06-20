@@ -16,7 +16,7 @@ import FlashDeCaixa from "../Pages/FlashDeCaixa/Show";
 import ShowMenus from "../Pages/Menu/Show";
 import RegisterClient from "../Pages/Clientes/Register";
 import ShowClients from "../Pages/Clientes/Show";
-import CaixaGeral from "../Pages/CaixaGeral";
+import CaixaGeral from "../Pages/CaixaGeral/Show";
 import History from "../Pages/Historico/Show";
 import Restaurantes from "../Pages/Admin/Restaurantes/Show";
 import RegisterRestaurant from "../Pages/Admin/Restaurantes/Register";

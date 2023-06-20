@@ -74,46 +74,62 @@ const FlashDeCaixa = () => {
   return (
     <Card sx={{ width: "100%", p: 2 }}>
       <Title title="Flash de Caixa" />
-      <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-        <Typography variant="h5">Selecione um período de movimentações</Typography>
-      <Box sx={{ display: "flex", justifyContent: "flex-end" }} mt={1}>
-        <TextField
-          type="date"
-          label="Data Inicial"
-          value={dateRange.startDate}
-          onChange={({ target }) =>
-            setDateRange({ ...dateRange, startDate: target.value })
-          }
-          InputLabelProps={{ shrink: true }}
-        />
-        <TextField
-          sx={{ marginLeft: "1rem" }}
-          type="date"
-          label="Data Final"
-          value={dateRange.endDate}
-          onChange={({ target }) =>
-            setDateRange({ ...dateRange, endDate: target.value })
-          }
-          InputLabelProps={{ shrink: true }}
-        />
-        <Button
-          sx={{ marginLeft: "1rem" }}
-          color="primary"
-          variant="contained"
-          startIcon={<SearchIcon />}
-          onClick={() => filterByDate()}
-        >
-          Pesquisar
-        </Button>
-      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="h6">
+          Selecione um período de movimentações
+        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }} mt={1}>
+          <TextField
+            type="date"
+            label="Data Inicial"
+            value={dateRange.startDate}
+            onChange={({ target }) =>
+              setDateRange({ ...dateRange, startDate: target.value })
+            }
+            InputLabelProps={{ shrink: true }}
+          />
+          <TextField
+            sx={{ marginLeft: "1rem" }}
+            type="date"
+            label="Data Final"
+            value={dateRange.endDate}
+            onChange={({ target }) =>
+              setDateRange({ ...dateRange, endDate: target.value })
+            }
+            InputLabelProps={{ shrink: true }}
+          />
+          <Button
+            sx={{ marginLeft: "1rem" }}
+            color="primary"
+            variant="contained"
+            startIcon={<SearchIcon />}
+            onClick={() => filterByDate()}
+          >
+            Pesquisar
+          </Button>
+        </Box>
       </Box>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell><b>Forma de Pagamento</b></TableCell>
-            <TableCell><b>Calculado</b></TableCell>
-            <TableCell><b>Declarado</b></TableCell>
-            <TableCell><b>Diferença</b></TableCell>
+            <TableCell>
+              <b>Forma de Pagamento</b>
+            </TableCell>
+            <TableCell>
+              <b>Calculado</b>
+            </TableCell>
+            <TableCell>
+              <b>Declarado</b>
+            </TableCell>
+            <TableCell>
+              <b>Diferença</b>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

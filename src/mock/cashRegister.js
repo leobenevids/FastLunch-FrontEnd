@@ -1,0 +1,17 @@
+export const cashRegister = [
+  { date: "2023-06-19T14:20:00Z", value: 98.99, situation: "aberto" },
+  { date: "2023-06-18T09:15:00Z", value: 500.75, situation: "fechado" },
+  { date: "2023-06-17T16:45:00Z", value: 275.25, situation: "aberto" },
+  { date: "2023-06-16T12:30:00Z", value: 150.0, situation: "fechado" },
+  { date: "2023-06-15T15:00:00Z", value: 198.5, situation: "aberto" },
+  { date: "2023-06-14T11:30:00Z", value: 350.0, situation: "aberto" },
+  { date: "2023-06-13T08:20:00Z", value: 220.0, situation: "fechado" },
+  { date: "2023-06-12T16:40:00Z", value: 450.0, situation: "aberto" },
+  { date: "2023-06-11T10:10:00Z", value: 175.5, situation: "fechado" },
+  { date: "2023-06-10T14:55:00Z", value: 310.25, situation: "aberto" },
+  { date: "2023-06-09T13:45:00Z", value: 210.0, situation: "fechado" },
+  { date: "2023-06-08T11:20:00Z", value: 390.0, situation: "aberto" },
+  { date: "2023-06-07T15:30:00Z", value: 230.75, situation: "fechado" },
+  // { date: "2023-06-06T13:10:00Z", value: 180.25, situation: "aberto" },
+//   { date: "2023-06-05T17:25:00Z", value: 420.0, situation: "fechado" },
+];
