@@ -34,20 +34,15 @@ const History = () => {
         <Grid container spacing={2}>
           {ordersHistory && ordersHistory.length ? (
             ordersHistory.map((order) => (
-              <Grid item xs={12} sm={6} md={4} key={order._id}>
-                <OrderCard
-                  nomeCliente={order.cliente}
-                  fotoPrato={order.foto}
-                  dataPedido={order.data}
-                  endereco={order.endereco_entrega}
-                  status={order.status}
-                />
+              <Grid item xs={12} sm={6} md={4} key={order?._id}>
+                <OrderCard order={order} isHistory={true} />
               </Grid>
             ))
           ) : (
             <Grid item xs={12}>
               <Typography variant="h5">
-                <SearchOffIcon /> Nenhum histórico de pedidos para esse restaurante.
+                <SearchOffIcon /> Nenhum histórico de pedidos para esse
+                restaurante.
               </Typography>
             </Grid>
           )}

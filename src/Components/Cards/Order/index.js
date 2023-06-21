@@ -12,7 +12,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { finishOrder, getMenu } from "../../../util/apiHelper";
 import { useNavigate } from "react-router-dom";
 
-const OrderCard = ({ order }) => {
+const OrderCard = ({ order, isHistory }) => {
   const [menuImage, setMenuImage] = useState(order?.restaurante_logo);
   const navigate = useNavigate();
 
@@ -69,14 +69,18 @@ const OrderCard = ({ order }) => {
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: "center" }}>
-        <Button
-          color="success"
-          variant="contained"
-          sx={{ color: "#fff" }}
-          onClick={() => finish(order?._id)}
-        >
-          Finalizar pedido <CheckCircleIcon fontSize="small" sx={{ ml: 1 }} />
-        </Button>
+        {isHistory ? (
+          <Button disabled>Pedido finalizado</Button>
+        ) : (
+          <Button
+            color="success"
+            variant="contained"
+            sx={{ color: "#fff" }}
+            onClick={() => finish(order?._id)}
+          >
+            Finalizar pedido <CheckCircleIcon fontSize="small" sx={{ ml: 1 }} />
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
